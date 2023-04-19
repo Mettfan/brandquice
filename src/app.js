@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const sucursalRoutes = require('./routes/sucursal')
 const ticketRoutes = require('./routes/ticket')
 const membershipRoutes = require('./routes/membership')
+const empresaRoutes = require('./routes/empresa')
 
 
 const cors = require('cors')
@@ -37,6 +38,7 @@ server.use('/', userRoutes);
 server.use('/', sucursalRoutes);
 server.use('/', ticketRoutes);
 server.use('/', membershipRoutes);
+server.use('/', empresaRoutes);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
