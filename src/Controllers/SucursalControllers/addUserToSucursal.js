@@ -13,8 +13,7 @@ console.log(sucursalId);
   if(sucursalId){
     let sucursal = await Sucursal.findOne( {where: { id: sucursalId}} )
     let user = await User.findOne( {where: {id: userId}} )
-    await sucursal.addUser(user).then(response => {
-      console.log(response);
+    await sucursal.setUser(user).then(response => {
         res.send(response)
     })
     // Sucursal.findOne( {where: { id: sucursalId } } ).then( (sucursal) => {
@@ -31,7 +30,7 @@ console.log(sucursalId);
     //   })
     // })
     .catch(error => {
-      console.log({error: error});
+      console.log(error);
       res.send(error)
     })
   }
