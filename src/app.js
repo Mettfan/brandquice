@@ -26,7 +26,15 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', ['https://donmay-front.vercel.app', 'https://www.okayamakaratedo.com.mx']); // update to match the domain you will make the request from
+  let whitelist = ['https://www.okayamakaratedo.com.mx', 'https://donmay-front.vercel.app'  ]
+  let foundURL = whitelist.includes(req.header('origin').toLocaleLowerCase())
+  if(foundURL){
+    res.header('Access-Control-Allow-Origin', foundURL); // update to match the domain you will make the request from
+  }
+  else{
+    res.header('Access-Control-Allow-Origin', 'https://donmay-front.vercel.app'); // update to match the domain you will make the request from
+    
+  }
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
