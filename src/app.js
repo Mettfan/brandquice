@@ -27,7 +27,7 @@ server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
   let whitelist = ['https://www.okayamakaratedo.com.mx', 'https://donmay-front.vercel.app'  ]
-  let foundURL = whitelist.find(url => url === req.header('origin').toLocaleLowerCase())
+  let foundURL = whitelist.find(url => url === req.header('origin')?.toLocaleLowerCase())
   if(foundURL){
     res.header('Access-Control-Allow-Origin', foundURL); // update to match the domain you will make the request from
   }
