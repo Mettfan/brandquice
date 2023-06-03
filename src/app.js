@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const sucursalRoutes = require('./routes/sucursal')
 const ticketRoutes = require('./routes/ticket')
+const analyticRoutes = require('./routes/analytic')
 const membershipRoutes = require('./routes/membership')
 const empresaRoutes = require('./routes/empresa')
 
@@ -47,6 +48,8 @@ server.use('/', sucursalRoutes);
 server.use('/', ticketRoutes);
 server.use('/', membershipRoutes);
 server.use('/', empresaRoutes);
+server.use('/', analyticRoutes);
+
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
