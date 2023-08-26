@@ -27,7 +27,7 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  let whitelist = ['https://www.okayamakaratedo.com.mx', 'https://donmay-front.vercel.app'  ]
+  let whitelist = ['https://www.okayamakaratedo.com.mx', 'https://donmay-front.vercel.app', 'https://www.donmay.com.mx'  ]
   let foundURL = whitelist.find(url => url === req.header('origin')?.toLocaleLowerCase())
   if(foundURL){
     res.header('Access-Control-Allow-Origin', foundURL); // update to match the domain you will make the request from
