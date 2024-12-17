@@ -17,16 +17,16 @@ const updatePlan = async (req, res) => {
 
     console.log(title, "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC");
     // Llama a la API para actualizar la información del usuario
-    const updateUserResponse = await axios.put("http://localhost:3001/users", {
+    const updateUserResponse = await axios.put("https://branquice.onrender.com/users", {
       userId: userId,
       additionalProducts: additionalProducts,
       newStatus: title === "Más Productos" ? null : title
     });
 
-    res.redirect("http://localhost:3000/profile");
+    res.redirect("https://www.donmay.com.mx/profile");
   } catch (error) {
     console.error("Error al verificar el estado del pago:", error);
-    res.redirect("http://localhost:3000/profile");
+    res.redirect("https://www.donmay.com.mx/profile");
   }
 };
 

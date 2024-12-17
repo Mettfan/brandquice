@@ -19,9 +19,9 @@ const paymentSuccess = async (req, res) => {
         }
       ],
       back_urls: {
-        success: `http://localhost:3001/payment/success?user_id=${userId}&title=${encodeURIComponent(title)}&quantity=${quantity}`,
-        failure: `http://localhost:3000/home`,
-        pending: `http://localhost:3000/home`
+        success: `https://branquice.onrender.com/payment/success?user_id=${userId}&title=${encodeURIComponent(title)}&quantity=${quantity}`,
+        failure: `https://www.donmay.com.mx/home`,
+        pending: `https://www.donmay.com.mx/home`
       },
       auto_return: 'approved',
     };

@@ -1,13 +1,15 @@
 const productRoutes = require('./routes/product')
 const userRoutes = require('./routes/user')
-const sucursalRoutes = require('./routes/sucursal')
-const ticketRoutes = require('./routes/ticket')
-const analyticRoutes = require('./routes/analytic')
-const mercadoPagoRoute = require('./routes/mercadopago')
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const sucursalRoutes = require('./routes/sucursal')
+const ticketRoutes = require('./routes/ticket')
+const analyticRoutes = require('./routes/analytic')
+const membershipRoutes = require('./routes/membership')
+const empresaRoutes = require('./routes/empresa')
+const mercadoPagoRoute = require('./routes/mercadopago')
 
 const cors = require('cors')
 
@@ -25,7 +27,15 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+  let whitelist = ['https://www.okayamakaratedo.com.mx', 'https://donmay-front.vercel.app', 'https://www.donmay.com.mx'  ]
+  let foundURL = whitelist.find(url => url === req.header('origin')?.toLocaleLowerCase())
+  if(foundURL){
+    res.header('Access-Control-Allow-Origin', foundURL); // update to match the domain you will make the request from
+  }
+  else{
+    res.header('Access-Control-Allow-Origin', 'https://donmay-front.vercel.app'); // update to match the domain you will make the request from
+    
+  }
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
@@ -38,6 +48,8 @@ server.use('/', sucursalRoutes);
 server.use('/', ticketRoutes);
 server.use('/', analyticRoutes);
 server.use('/', mercadoPagoRoute);
+server.use('/', membershipRoutes);
+server.use('/', empresaRoutes);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
