@@ -55,6 +55,9 @@ console.log(additionalProducts, user, user.dan, "???????????????????????????????
       if (editingUser.age && editingUser.age !== user.age) {
         updates.age = editingUser.age;
       }
+      if (editingUser.dan && editingUser.dan !== user.dan) {
+        updates.dan = editingUser.dan;
+      }
       if (
         editingUser.privileges &&
         editingUser.privileges !== user.privileges
